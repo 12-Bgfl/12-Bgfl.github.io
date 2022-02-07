@@ -60,6 +60,10 @@ body {
   font-size: 35px;
   cursor: pointer;
 }
+  
+ img.avatar{
+   border-radius: 50%;
+ }
 </style>
 </head>
 <body>
@@ -76,13 +80,18 @@ body {
   </div>
   
 </div>
-
+ 
 <div class="container">
   <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
   <img id="expandedImg" style="width:100%">
   <div id="imgtext"></div>
 </div>
 
+<foot>
+   <img class="avatar" src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/3FB9E01B-97E5-47DC-8451-8FF83E44390A.jpeg?alt=media&token=51cc55d2-e0e9-4c6c-9a81-7695a77027d0" alt="Avatar"> 
+</foot>  
+  
+  
 <script>
 function myFunction(imgs) {
   var expandImg = document.getElementById("expandedImg");
