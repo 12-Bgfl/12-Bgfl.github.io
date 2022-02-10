@@ -1,21 +1,29 @@
-const els = document.querySelectorAll("[type='radio']");
-for (const el of els)
-  el.addEventListener("input", e => reorder(e.target, els));
-reorder(els[0], els);
+(function() {
+  $('.gallery-link').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    mainClass: 'mfp-with-zoom mfp-img-mobile',
+    image: {
+      verticalFit: true,
+      titleSrc: function(item) {
+        return item.el.find('figcaption').text() || item.el.attr('title');
+      }
+    },
+    zoom: {
+      enabled: true
+    },
+    gallery: {
+      enabled: true,
+      navigateByImgClick: false,
+      tCounter: ''
+    },
+    disableOn: function() {
+      if ($(window).width() < 640) {
+        return false;
+      }
+      return true;
+    }
+  });
 
-function reorder(targetEl, els) {
-  const nItems = els.length;
-  let processedUncheck = 0;
-  for (const el of els) {
-    const containerEl = el.nextElementSibling;
-    if (el === targetEl) {//checked radio
-      containerEl.style.setProperty("--w", "100%");
-      containerEl.style.setProperty("--l", "0");
-    }
-    else {//unchecked radios
-      containerEl.style.setProperty("--w", `${100/(nItems-1)}%`);
-      containerEl.style.setProperty("--l", `${processedUncheck * 100/(nItems-1)}%`);
-      processedUncheck += 1;
-    }
-  }
-}
+}).call(this);
