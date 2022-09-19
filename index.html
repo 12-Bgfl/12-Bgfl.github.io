@@ -1,196 +1,64 @@
-<html>
-  <head>
-    <title>12-B</title>
-    <style>
-      * {
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>12/B Sanal Yıllık</title>
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+  <div>
+    <center>
+      <img src="gfl/1.jpg" id="myPicture" width="850" height="650" alt="some image">
+    </center>
+    
+  </div>  
+   
+  <py-script>
+    import random
+    from js import document, Element
+    from pyodide import create_proxy 
+    
 
-/* Position the image container (needed to position the left and right arrows) */
-.container {
-  position: relative;
-}
+    myList = ['gfl/1.jpg', 'gfl/2.jpg', 'gfl/3.jpg', 'gfl/4.jpg', 'gfl/5.jpg', 'gfl/6.jpg', 'gfl/7.jpg', 'gfl/8.jpg', 'gfl/9.jpg', 'gfl/10.jpg', 'gfl/11.jpg', 'gfl/12.jpg', 'gfl/13.jpg', 'gfl/14.jpg', 'gfl/15.jpg', 'gfl/16.jpg', 'gfl/17.jpg', 'gfl/18.jpg', 'gfl/19.jpg', 'gfl/20.jpg',
+              'gfl/21.jpg', 'gfl/22.jpg', 'gfl/23.jpg', 'gfl/24.jpg', 'gfl/25.jpg', 'gfl/26.jpg', 'gfl/27.jpg', 'gfl/28.jpg', 'gfl/29.jpg', 'gfl/30.jpg', 'gfl/31.jpg', 'gfl/32.jpg', 'gfl/33.jpg', 'gfl/34.jpg', 'gfl/35.jpg', 'gfl/36.jpg', 'gfl/37.jpg', 'gfl/38.jpg', 'gfl/39.jpg',
+              'gfl/40.jpg', 'gfl/41.jpg', 'gfl/42.jpg', 'gfl/43.jpg', 'gfl/44.jpg', 'gfl/45.jpg', 'gfl/46.jpg', 'gfl/47.jpg', 'gfl/48.jpg', 'gfl/49.jpg', 'gfl/50.jpg', 'gfl/51.jpg', 'gfl/52.jpg', 'gfl/53.jpg', 'gfl/54.jpg', 'gfl/55.jpg', 'gfl/56.jpg', 'gfl/57.jpg', 'gfl/58.jpg', 'gfl/59.jpg',
+              'gfl/60.jpg', 'gfl/61.jpg', 'gfl/62.jpg', 'gfl/63.jpg', 'gfl/64.jpg', 'gfl/65.jpg', 'gfl/66.jpg', 'gfl/67.jpg', 'gfl/68.jpg', 'gfl/69.jpg', 'gfl/70.jpg', 'gfl/71.jpg', 'gfl/72.jpg', 'gfl/73.jpg', 'gfl/74.jpg', 'gfl/75.jpg', 'gfl/76.jpg', 'gfl/77.jpg', 'gfl/78.jpg', 'gfl/79.jpg',
+              'gfl/80.jpg', 'gfl/81.jpg', 'gfl/82.jpg', 'gfl/83.jpg', 'gfl/84.jpg', 'gfl/85.jpg', 'gfl/86.jpg', 'gfl/87.jpg', 'gfl/88.jpg', 'gfl/89.jpg', 'gfl/90.jpg', 'gfl/91.jpg', 'gfl/92.jpg', 'gfl/93.jpg', 'gfl/94.jpg', 'gfl/95.jpg', 'gfl/96.jpg', 'gfl/97.jpg', 'gfl/98.jpg', 'gfl/99.jpg',
+              'gfl/100.jpg', 'gfl/101.jpg', 'gfl/102.jpg', 'gfl/103.jpg', 'gfl/104.jpg', 'gfl/105.jpg', 'gfl/106.jpg', 'gfl/107.jpg', 'gfl/108.jpg', 'gfl/109.jpg', 'gfl/110.jpg', 'gfl/111.jpg', 'gfl/112.jpg', 'gfl/113.jpg', 'gfl/114.jpg', 'gfl/115.jpg', 'gfl/116.jpg', 'gfl/117.jpg', 'gfl/118.jpg', 'gfl/119.jpg',
+              'gfl/120.jpg', 'gfl/121.jpg', 'gfl/122.jpg', 'gfl/123.jpg', 'gfl/124.jpg', 'gfl/125.jpg', 'gfl/126.jpg', 'gfl/127.jpg', 'gfl/128.jpg', 'gfl/129.jpg', 'gfl/130.jpg', 'gfl/131.jpg', 'gfl/132.jpg', 'gfl/133.jpg', 'gfl/134.jpg', 'gfl/135.jpg', 'gfl/136.jpg', 'gfl/137.jpg', 'gfl/138.jpg', 'gfl/139.jpg',
+              'gfl/140.jpg', 'gfl/141.jpg', 'gfl/142.jpg', 'gfl/143.jpg', 'gfl/144.jpg', 'gfl/145.jpg', 'gfl/146.jpg', 'gfl/147.jpg', 'gfl/148.jpg', 'gfl/149.jpg', 'gfl/150.jpg', 'gfl/151.jpg', 'gfl/152.jpg', 'gfl/153.jpg', 'gfl/154.jpg']
+    
+    global last
+    last = 153          
 
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
+    def on_click(event):
+        global last
+        i = random.randint(0,last)
+        print(i)
+        
+        last = last - 1
+        
+        document.getElementById("myPicture").src = myList[i]
 
-/* Add a pointer when hovering over the thumbnail images */
-.cursor {
-  cursor: pointer;
-}
+        myList.remove(myList[i])
+        
+        
 
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 40%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* Container for image text */
-.caption-container {
-  text-align: center;
-  background-color: #222;
-  padding: 2px 16px;
-  color: white;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Six columns side by side */
-.column {
-  float: left;
-  width: 16.66%;
-}
-
-/* Add a transparency effect for thumnbail images */
-.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
-}
-    </style> 
-  </head>
-  <body>
-    <!-- Container for the image gallery -->
-<div class="container">
-
-  <!-- Full-width images with number text -->
-  <div class="mySlides">
-    <div class="numbertext">1 / 6</div>
-      <img src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/12%20ceren%20galeri%2FIMG_8885.JPG?alt=media&token=4db085ab-bc02-4f44-9642-e17ec2902ab4" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">2 / 6</div>
-      <img src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/12%20ceren%20galeri%2FIMG_0286.JPG?alt=media&token=b6095ac6-7597-49b3-a794-c286e19fc57a" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">3 / 6</div>
-      <img src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/12%20dide%20galerisi%2F0dbd553d-1b20-4208-93bc-04f6375229eb.jpg?alt=media&token=c8783cb9-a6ec-4911-b0b5-b6f0c7123e75" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">4 / 6</div>
-      <img src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/pogaca%2F60d882d4-daf4-4a4c-8c4f-99802e6ba08a.jpg?alt=media&token=fa4cb109-49e3-4ff0-baaa-a2e8c1963814" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">5 / 6</div>
-      <img src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/%C3%B6gretmengunu12%2F291d6f1a-02ff-41f0-946a-92a64c20ef3b.jpg?alt=media&token=26d1e5cb-b292-4c30-9085-955cb72e6576" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">6 / 6</div>
-      <img src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/%C3%B6gretmengunu12%2F5aa49a86-d5d6-4acd-8909-35d866a968bd.jpg?alt=media&token=39b7258a-fc28-4033-bccf-75a892c6bcba" style="width:100%">
-  </div>
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-  <!-- Image text -->
-  <div class="caption-container">
-    <p id="caption"></p>
-  </div>
-
-  <!-- Thumbnail images -->
-  <div class="row">
-    <div class="column">
-      <img class="demo cursor" src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/12%20ceren%20galeri%2FIMG_8885.JPG?alt=media&token=4db085ab-bc02-4f44-9642-e17ec2902ab4" style="width:100%" onclick="currentSlide(1)" alt="12-B">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/12%20ceren%20galeri%2FIMG_0286.JPG?alt=media&token=b6095ac6-7597-49b3-a794-c286e19fc57a" style="width:100%" onclick="currentSlide(2)" alt="12-B">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/12%20dide%20galerisi%2F0dbd553d-1b20-4208-93bc-04f6375229eb.jpg?alt=media&token=c8783cb9-a6ec-4911-b0b5-b6f0c7123e75" style="width:100%" onclick="currentSlide(3)" alt="12-B">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/pogaca%2F60d882d4-daf4-4a4c-8c4f-99802e6ba08a.jpg?alt=media&token=fa4cb109-49e3-4ff0-baaa-a2e8c1963814" style="width:100%" onclick="currentSlide(4)" alt="12-B">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/%C3%B6gretmengunu12%2F291d6f1a-02ff-41f0-946a-92a64c20ef3b.jpg?alt=media&token=26d1e5cb-b292-4c30-9085-955cb72e6576" style="width:100%" onclick="currentSlide(5)" alt="12-B">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="https://firebasestorage.googleapis.com/v0/b/b-89a79.appspot.com/o/%C3%B6gretmengunu12%2F5aa49a86-d5d6-4acd-8909-35d866a968bd.jpg?alt=media&token=39b7258a-fc28-4033-bccf-75a892c6bcba" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
-    </div>
-  </div>
-</div>
-  </body>
-  <script>
-    var slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  var captionText = document.getElementById("caption");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  captionText.innerHTML = dots[slideIndex-1].alt;
-}
-  </script>
+    button = document.getElementById("myPicture")
+    button.addEventListener("click", create_proxy(on_click))
+    
   
-  <script type="module">
+  </py-script>
+</body>
+<center>
+<footer>
+  <p>© 2022 Hüseyin KIRCA & 12/B</p>
+</footer>
+</center>
+
+<script type="module">
 
   // Import the functions you need from the SDKs you need
 
@@ -234,5 +102,4 @@ function showSlides(n) {
 
 </script>
 
-  
 </html>
